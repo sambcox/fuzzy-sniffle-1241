@@ -55,6 +55,7 @@ RSpec.describe 'Chef show' do
   it 'includes a link to all ingredients for this chef' do
     visit chef_path(@guy)
 
+
     click_on("Guy Fieri's ingredients")
     expect(current_path).to eq(chef_ingredients_path(@guy))
   end
