@@ -67,6 +67,7 @@ RSpec.describe 'Chef show' do
     visit chef_path(@guy)
 
     expect(@raw_bacon.name).to appear_before(@parm.name)
-    expect(@parm.name).to appear_before(@rice.name)
+    expect(page).to have_content(@rice.name)
+    expect(page).to_not have_content(@egg.name)
   end
 end

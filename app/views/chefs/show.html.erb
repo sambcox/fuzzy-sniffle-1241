@@ -7,6 +7,13 @@
 </ul>
 <%= link_to "#{@chef.name}'s ingredients", chef_ingredients_path(@chef)%>
 
+<h3>Top three ingredients for this chef:</h3>
+<ul>
+  <% @chef.top_three_ingredients.each do |ingredient| %>
+    <li><%= ingredient.name %></li>
+  <% end %>
+</ul>
+
 <h3>Add a dish to this chef's repertoire:</h3>
 <%= form_with url: chef_dishes_path, method: :post, local: true do |form| %>
   <%= form.hidden_field :chef_id, value: "#{@chef.id}" %>
