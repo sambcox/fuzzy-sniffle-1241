@@ -29,6 +29,9 @@ RSpec.describe 'Chef show' do
     DishIngredient.create!({dish_id: @burger.id, ingredient_id: @mince.id})
     DishIngredient.create!({dish_id: @friedrice.id, ingredient_id: @egg.id})
     DishIngredient.create!({dish_id: @bacon.id, ingredient_id: @raw_bacon.id})
+    DishIngredient.create!({dish_id: @burger.id, ingredient_id: @raw_bacon.id})
+    DishIngredient.create!({dish_id: @friedrice.id, ingredient_id: @raw_bacon.id})
+    DishIngredient.create!({dish_id: @friedrice.id, ingredient_id: @parm.id})
   end
 
   it 'shows all chef information' do
@@ -58,5 +61,12 @@ RSpec.describe 'Chef show' do
 
     click_on("Guy Fieri's ingredients")
     expect(current_path).to eq(chef_ingredients_path(@guy))
+  end
+
+  it 'shows the top 3 ingredients for this chef' do
+    visit chef_path(@guy)
+
+    expect(@raw_bacon.name).to appear_before(@parm.name)
+    expect(@parm.name).to appear_before(@rice.name)
   end
 end

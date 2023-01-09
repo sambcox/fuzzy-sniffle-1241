@@ -39,9 +39,16 @@ RSpec.describe Chef, type: :model do
       DishIngredient.create!({dish_id: @burger.id, ingredient_id: @mince.id})
       DishIngredient.create!({dish_id: @friedrice.id, ingredient_id: @egg.id})
       DishIngredient.create!({dish_id: @bacon.id, ingredient_id: @raw_bacon.id})
+      DishIngredient.create!({dish_id: @burger.id, ingredient_id: @raw_bacon.id})
+      DishIngredient.create!({dish_id: @friedrice.id, ingredient_id: @raw_bacon.id})
+      DishIngredient.create!({dish_id: @friedrice.id, ingredient_id: @parm.id})
     end
     it 'returns the distinct ingredients for a chef' do
       expect(@guy.ingredient_list.sort).to eq([@rice, @parm, @mince, @egg, @raw_bacon])
+    end
+
+    it 'returns the top three ingredients for a chef' do
+      expect(@guy.top_three_ingredients).to eq([@raw_bacon, @parm, @rice])
     end
   end
 end
