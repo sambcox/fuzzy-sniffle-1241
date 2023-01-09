@@ -1,5 +1,5 @@
 class Chef < ApplicationRecord
   validates_presence_of :name
-  has_many :dishes
-
+  has_many :chef_dishes
+  has_many :dishes, through: :chef_dishes
 end

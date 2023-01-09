@@ -44,6 +44,8 @@ RSpec.describe 'Chef show' do
     pulled_pork = Dish.create({name: 'Pulled Pork', description: 'Juicy but not too wet, dry but not too dry, this is the perfect pork'})
     visit chef_path(@guy)
 
+    expect(page).to_not have_content(pulled_pork.name)
+
     fill_in('dish_id', with: pulled_pork.id)
     click_button('Submit')
     expect(current_path).to eq(chef_path(@guy))

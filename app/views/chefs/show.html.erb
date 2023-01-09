@@ -1,0 +1,9 @@
+<h1><%= @chef.name %></h1>
+<h3>Dishes made by this chef:</h3>
+<ul>
+  <% @chef.dishes.each do |dish| %>
+    <li><%= dish.name %></li>
+  <% end %>
+<ul>
+<h3>Add a dish to this chef's repertoire:</h3>
+<%= form_with model: @chef %>
