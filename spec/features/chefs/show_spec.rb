@@ -41,7 +41,7 @@ RSpec.describe 'Chef show' do
   end
 
   it 'can add a dish to the chef' do
-    pulled_pork = Dish.create!({name: 'Pulled Pork', description: 'Juicy but not too wet, dry but not too dry, this is the perfect pork'})
+    pulled_pork = Dish.create({name: 'Pulled Pork', description: 'Juicy but not too wet, dry but not too dry, this is the perfect pork'})
     visit chef_path(@guy)
 
     fill_in('dish_id', with: pulled_pork.id)
