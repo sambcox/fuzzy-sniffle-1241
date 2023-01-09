@@ -6,4 +6,8 @@
   <% end %>
 <ul>
 <h3>Add a dish to this chef's repertoire:</h3>
-<%= form_with model: @chef %>
+<%= form_with url: chef_dishes_path, method: :post, local: true do |form| %>
+  <%= form.hidden_field :chef_id, value: "#{@chef.id}" %>
+  <%= form.number_field :dish_id %>
+  <%= form.submit 'Submit' %>
+<% end %>

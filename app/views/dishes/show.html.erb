@@ -1,5 +1,11 @@
 <h1><%= @dish.name %></h1>
-<h2>Made by: <%= @dish.chef.name %></h2>
+<h2>Made by:</h2>
+<ul>
+<% @dish.chefs.each do |chef| %>
+  <%= chef.name %>
+<% end %>
+</ul>
+
 <h3>How the chef describes it:</h3>
 <p><%= @dish.description %></p>
 <h3>Ingredients in this dish:</h3>
