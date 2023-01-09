@@ -31,31 +31,14 @@ RSpec.describe 'Chef show' do
     DishIngredient.create!({dish_id: @bacon.id, ingredient_id: @raw_bacon.id})
   end
 
-  it 'shows all chef information' do
-    visit chef_path(@guy)
+  it 'shows ingredients for the specific chef' do
+    visit chef_ingredients_path(@guy)
 
-    expect(page).to have_content(@guy.name)
-    expect(page).to have_content(@burger.name)
-    expect(page).to have_content(@friedrice.name)
-    expect(page).to have_content(@bacon.name)
-  end
-
-  it 'can add a dish to the chef' do
-    pulled_pork = Dish.create({name: 'Pulled Pork', description: 'Juicy but not too wet, dry but not too dry, this is the perfect pork'})
-    visit chef_path(@guy)
-
-    expect(page).to_not have_content(pulled_pork.name)
-
-    fill_in('dish_id', with: pulled_pork.id)
-    click_button('Submit')
-    expect(current_path).to eq(chef_path(@guy))
-    expect(page).to have_content(pulled_pork.name)
-  end
-
-  it 'includes a link to all ingredients for this chef' do
-    visit chef_path(@guy)
-
-    click_on("Guy Fieri's ingredients")
-    expect(current_path).to eq(chef_ingredients_path(@guy))
+    expect(page).to have_content(@rice.name)
+    expect(page).to have_content(@parm.name)
+    expect(page).to have_content(@mince.name)
+    expect(page).to have_content(@egg.name)
+    expect(page).to have_content(@raw_bacon.name)
+    expect(page).to_not have_content(@truffle.name)
   end
 end
